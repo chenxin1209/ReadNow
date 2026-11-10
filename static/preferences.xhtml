@@ -1,0 +1,150 @@
+<vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      id="deepread-prefpane"
+      class="deepread-prefpane"
+      flex="1">
+  <html:div class="dr-prefs" id="deepread-prefs-root">
+    <html:header class="dr-prefs-hero">
+      <html:div class="dr-prefs-logo" aria-hidden="true">
+        <html:img src="icons/deepread-96.png" alt=""/>
+      </html:div>
+      <html:div>
+        <html:h1>ReadNow</html:h1>
+        <html:p>在自己的 Zotero 里读原文、看译文、对照精读，并把每个 AI 回答钉在原文选区上。</html:p>
+      </html:div>
+      <html:span class="dr-prefs-version" id="dr-pref-version">v0.1.0</html:span>
+    </html:header>
+
+    <html:section class="dr-prefs-card">
+      <html:div class="dr-prefs-section-head">
+        <html:h2>模型连接</html:h2>
+        <html:p>ReadNow 不代理你的请求，API Key 只保存在本机 Zotero 配置中。</html:p>
+      </html:div>
+
+      <html:div class="dr-prefs-grid">
+        <html:label class="dr-pref-field">
+          <html:span>服务商</html:span>
+          <html:select id="dr-pref-provider"></html:select>
+        </html:label>
+
+        <html:label class="dr-pref-field dr-pref-field-wide">
+          <html:span>API Base URL</html:span>
+          <html:input id="dr-pref-base-url" type="url" spellcheck="false" placeholder="https://api.openai.com/v1"/>
+          <html:small>OpenAI 兼容接口通常以 <html:code>/v1</html:code> 结尾；Ollama 可填 <html:code>http://127.0.0.1:11434/v1</html:code>。</html:small>
+        </html:label>
+
+        <html:label class="dr-pref-field dr-pref-field-wide">
+          <html:span>API Key</html:span>
+          <html:div class="dr-pref-secret">
+            <html:input id="dr-pref-api-key" type="password" spellcheck="false" autocomplete="off" placeholder="sk-..."/>
+            <html:button id="dr-pref-key-toggle" type="button" class="dr-pref-ghost" title="显示 / 隐藏">显示</html:button>
+          </html:div>
+          <html:small id="dr-pref-key-help">密钥只写入本机 prefs.js，不会同步，也不会发送给 ReadNow。</html:small>
+        </html:label>
+
+        <html:label class="dr-pref-field">
+          <html:span>对话模型</html:span>
+          <html:input id="dr-pref-model" type="text" list="dr-pref-model-options" spellcheck="false" placeholder="deepseek-flash"/>
+        </html:label>
+
+        <html:label class="dr-pref-field">
+          <html:span>翻译模型</html:span>
+          <html:input id="dr-pref-translation-model" type="text" list="dr-pref-model-options" spellcheck="false" placeholder="deepseek-flash"/>
+          <html:small>留空时复用对话模型；翻译量大时建议选更便宜的小模型。</html:small>
+        </html:label>
+        <html:datalist id="dr-pref-model-options"></html:datalist>
+      </html:div>
+
+      <html:div class="dr-prefs-actions">
+        <html:button id="dr-pref-test" type="button" class="dr-pref-btn">测试连接</html:button>
+        <html:button id="dr-pref-save" type="button" class="dr-pref-btn dr-pref-btn-primary">保存设置</html:button>
+        <html:button id="dr-pref-reset" type="button" class="dr-pref-ghost">恢复默认</html:button>
+        <html:span id="dr-pref-status" class="dr-pref-status" role="status"></html:span>
+      </html:div>
+    </html:section>
+
+    <html:section class="dr-prefs-card">
+      <html:div class="dr-prefs-section-head">
+        <html:h2>翻译与阅读</html:h2>
+        <html:p>自动翻译只在你主动阅读译文时发起请求，不会默默上传整篇论文。</html:p>
+      </html:div>
+
+      <html:div class="dr-prefs-grid">
+        <html:label class="dr-pref-field">
+          <html:span>目标语言</html:span>
+          <html:select id="dr-pref-target-lang"></html:select>
+        </html:label>
+
+        <html:label class="dr-pref-field">
+          <html:span>问答附带的页面上下文</html:span>
+          <html:select id="dr-pref-context-pages">
+            <html:option value="0">仅当前页</html:option>
+            <html:option value="1">当前页 + 相邻页</html:option>
+            <html:option value="2">当前页 + 前后两页</html:option>
+          </html:select>
+        </html:label>
+
+        <html:label class="dr-pref-field dr-pref-field-wide">
+          <html:span>流式输出</html:span>
+          <html:div class="dr-pref-checkline">
+            <html:input id="dr-pref-stream" type="checkbox"/>
+            <html:small>回答逐字显示；部分兼容接口不支持流式，遇到问题可关闭。</html:small>
+          </html:div>
+        </html:label>
+
+        <html:label class="dr-pref-field">
+          <html:span>温度</html:span>
+          <html:input id="dr-pref-temperature" type="number" min="0" max="1" step="0.1"/>
+          <html:small>0–1，越低越稳定。</html:small>
+        </html:label>
+
+        <html:label class="dr-pref-field">
+          <html:span>最大输出 tokens</html:span>
+          <html:input id="dr-pref-max-tokens" type="number" min="256" max="8192" step="64"/>
+        </html:label>
+      </html:div>
+
+      <html:div class="dr-pref-checkgrid">
+        <html:label class="dr-pref-check">
+          <html:input id="dr-pref-auto-translate" type="checkbox"/>
+          <html:span><html:strong>选中文字后自动翻译</html:strong><html:small>在阅读器划词弹窗里直接显示译文。</html:small></html:span>
+        </html:label>
+        <html:label class="dr-pref-check">
+          <html:input id="dr-pref-auto-page" type="checkbox"/>
+          <html:span><html:strong>对照模式自动翻译当前页</html:strong><html:small>翻页时按需翻译，不预先生成全文。</html:small></html:span>
+        </html:label>
+        <html:label class="dr-pref-check">
+          <html:input id="dr-pref-auto-restore" type="checkbox"/>
+          <html:span><html:strong>重新打开论文时恢复问答卡片</html:strong><html:small>卡片仍锚定到对应原文选区。</html:small></html:span>
+        </html:label>
+        <html:label class="dr-pref-check">
+          <html:input id="dr-pref-deepseek-thinking" type="checkbox"/>
+          <html:span><html:strong>DeepSeek 思考模式</html:strong><html:small>更慢，复杂问答更稳；翻译会自动关闭思考模式。</html:small></html:span>
+        </html:label>
+      </html:div>
+
+      <html:details class="dr-pref-details">
+        <html:summary>高级：提示词</html:summary>
+        <html:label class="dr-pref-field">
+          <html:span>AI 问答系统提示词</html:span>
+          <html:textarea id="dr-pref-system-prompt" rows="5"></html:textarea>
+        </html:label>
+        <html:label class="dr-pref-field">
+          <html:span>翻译系统提示词</html:span>
+          <html:textarea id="dr-pref-translation-prompt" rows="5"></html:textarea>
+        </html:label>
+      </html:details>
+    </html:section>
+
+    <html:section class="dr-prefs-card dr-prefs-about">
+      <html:div class="dr-prefs-section-head">
+        <html:h2>数据与隐私</html:h2>
+      </html:div>
+      <html:ul class="dr-pref-notes">
+        <html:li>API Key 存在 Zotero 的 <html:code>prefs.js</html:code> 中，不会同步到 Zotero 服务器。</html:li>
+        <html:li>问答卡片、翻译缓存保存在 Zotero 数据目录下的 <html:code>deepread/</html:code> 文件夹。</html:li>
+        <html:li>论文文本只会发送给你自己填写的模型服务商，用于翻译与问答。</html:li>
+      </html:ul>
+    </html:section>
+  </html:div>
+</vbox>

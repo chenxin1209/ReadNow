@@ -1,0 +1,413 @@
+.deepread-prefpane {
+  --dr-ink: #203044;
+  --dr-muted: #687b91;
+  --dr-line: #d9e3ee;
+  --dr-surface: #f8fafc;
+  --dr-surface-2: #edf3f9;
+  --dr-accent: #5f82aa;
+  --dr-accent-strong: #456b94;
+  --dr-accent-soft: #e3edf7;
+  --dr-warn: #a35a14;
+  --dr-danger: #a33535;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: var(--dr-ink);
+  min-width: 560px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .deepread-prefpane {
+    --dr-ink: #e7edf5;
+    --dr-muted: #a4b1c1;
+    --dr-line: #35475a;
+    --dr-surface: #1e2936;
+    --dr-surface-2: #273544;
+    --dr-accent: #8cb3dc;
+    --dr-accent-strong: #b2cff0;
+    --dr-accent-soft: #293f56;
+    --dr-warn: #e0a15e;
+    --dr-danger: #ef8b8b;
+  }
+}
+
+#deepread-prefs-root.dr-prefs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 820px;
+  padding: 4px 4px 28px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.dr-prefs *,
+.dr-prefs *::before,
+.dr-prefs *::after {
+  box-sizing: border-box;
+}
+
+.dr-prefs-hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--dr-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(104, 145, 190, 0.18), transparent 42%),
+    var(--dr-surface);
+}
+
+.dr-prefs-logo {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  box-shadow: 0 5px 16px rgba(52, 88, 126, 0.24);
+  border-radius: 13px;
+}
+
+.dr-prefs-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.dr-prefs-hero h1 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.dr-prefs-hero p {
+  margin: 5px 0 0;
+  color: var(--dr-muted);
+  max-width: 620px;
+}
+
+.dr-prefs-version {
+  margin-left: auto;
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: var(--dr-muted);
+  background: var(--dr-surface-2);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.dr-prefs-card {
+  padding: 20px;
+  border: 1px solid var(--dr-line);
+  border-radius: 14px;
+  background: var(--dr-surface);
+}
+
+.dr-prefs-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--dr-line);
+  padding-bottom: 12px;
+}
+
+.dr-prefs-section-head h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+.dr-prefs-section-head p {
+  margin: 0;
+  color: var(--dr-muted);
+  font-size: 12px;
+  text-align: right;
+}
+
+.dr-prefs-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px 18px;
+}
+
+.dr-pref-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.dr-pref-field-wide {
+  grid-column: 1 / -1;
+}
+
+.dr-pref-field > span {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--dr-ink);
+}
+
+.dr-pref-field input[type="text"],
+.dr-pref-field input[type="url"],
+.dr-pref-field input[type="password"],
+.dr-pref-field input[type="number"],
+.dr-pref-field select,
+.dr-pref-field textarea {
+  width: 100%;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--dr-line);
+  border-radius: 8px;
+  background-color: var(--dr-surface-2);
+  color: var(--dr-ink);
+  font: inherit;
+  font-size: 12.5px;
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+/* Selects get an explicit caret inside the field, so it stays visible with
+   native appearance disabled by the preferences window theme. */
+.dr-pref-field select {
+  appearance: none;
+  -moz-appearance: none;
+  min-height: 36px;
+  padding-inline-end: 36px;
+  cursor: pointer;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--dr-muted) 50%),
+    linear-gradient(135deg, var(--dr-muted) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 1px),
+    calc(100% - 13px) calc(50% - 1px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.dr-pref-field select:hover {
+  border-color: color-mix(in srgb, var(--dr-accent) 40%, var(--dr-line));
+}
+
+.dr-pref-field select:focus {
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--dr-accent) 50%),
+    linear-gradient(135deg, var(--dr-accent) 50%, transparent 50%);
+}
+
+.dr-pref-field input:focus,
+.dr-pref-field select:focus,
+.dr-pref-field textarea:focus {
+  border-color: var(--dr-accent);
+  background-color: var(--dr-surface);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--dr-accent) 18%, transparent);
+}
+
+.dr-pref-field textarea {
+  resize: vertical;
+  min-height: 96px;
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 11.5px;
+  line-height: 1.6;
+}
+
+.dr-pref-field small {
+  color: var(--dr-muted);
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+.dr-pref-link {
+  color: var(--dr-accent);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--dr-accent) 35%, transparent);
+}
+
+.dr-pref-link:hover {
+  border-bottom-color: var(--dr-accent);
+}
+
+.dr-pref-field code,
+.dr-pref-notes code {
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: var(--dr-surface-2);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.92em;
+}
+
+.dr-pref-secret {
+  display: flex;
+  gap: 8px;
+}
+
+.dr-pref-secret input {
+  flex: 1 1 auto;
+}
+
+.dr-pref-ghost,
+.dr-pref-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  border: 1px solid var(--dr-line);
+  border-radius: 8px;
+  background: var(--dr-surface);
+  color: var(--dr-ink);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.2;
+  padding: 7px 14px;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 120ms ease, border-color 120ms ease, transform 80ms ease;
+}
+
+.dr-pref-ghost:hover,
+.dr-pref-btn:hover {
+  background: var(--dr-surface-2);
+  border-color: color-mix(in srgb, var(--dr-accent) 35%, var(--dr-line));
+}
+
+.dr-pref-ghost:active,
+.dr-pref-btn:active {
+  transform: translateY(1px);
+}
+
+.dr-pref-btn-primary {
+  border-color: var(--dr-accent);
+  background: var(--dr-accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.dr-pref-btn-primary:hover {
+  background: var(--dr-accent-strong);
+  border-color: var(--dr-accent-strong);
+}
+
+@media (prefers-color-scheme: dark) {
+  .dr-pref-btn-primary {
+    color: #1d2d40;
+  }
+}
+
+.dr-prefs-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--dr-line);
+  flex-wrap: wrap;
+}
+
+.dr-pref-status {
+  margin-left: auto;
+  color: var(--dr-muted);
+  font-size: 12px;
+  max-width: 46%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dr-pref-status.is-ok {
+  color: var(--dr-accent);
+}
+
+.dr-pref-status.is-error {
+  color: var(--dr-danger);
+}
+
+.dr-pref-status.is-busy {
+  color: var(--dr-warn);
+}
+
+.dr-pref-checkgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.dr-pref-check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 11px 12px;
+  border: 1px solid var(--dr-line);
+  border-radius: 10px;
+  background: var(--dr-surface-2);
+  cursor: pointer;
+}
+
+.dr-pref-check input {
+  margin: 2px 0 0;
+  accent-color: var(--dr-accent);
+}
+
+.dr-pref-check > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dr-pref-check strong {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.dr-pref-check small {
+  color: var(--dr-muted);
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+.dr-pref-checkline {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 4px 0;
+}
+
+.dr-pref-checkline input {
+  accent-color: var(--dr-accent);
+}
+
+.dr-pref-details {
+  margin-top: 18px;
+  border-top: 1px dashed var(--dr-line);
+  padding-top: 14px;
+}
+
+.dr-pref-details summary {
+  cursor: pointer;
+  color: var(--dr-muted);
+  font-size: 12px;
+  user-select: none;
+  margin-bottom: 12px;
+}
+
+.dr-pref-details .dr-pref-field + .dr-pref-field {
+  margin-top: 12px;
+}
+
+.dr-pref-notes {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--dr-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.dr-prefs-about {
+  background:
+    linear-gradient(180deg, transparent, color-mix(in srgb, var(--dr-accent-soft) 45%, transparent)),
+    var(--dr-surface);
+}

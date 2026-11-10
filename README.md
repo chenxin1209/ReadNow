@@ -28,12 +28,12 @@
 
 ## 安装
 
-1. 下载仓库根目录的 **`ReadNow-0.1.0.xpi`**。
+1. 点击 **[下载 ReadNow v0.1.0](https://github.com/chenxin1209/ReadNow/releases/download/v0.1.0/ReadNow-0.1.0.xpi)** 获取插件安装包。
 2. 打开 Zotero → **工具 → 插件**。
 3. 点击右上角齿轮 → **从文件安装插件…**，选择 `ReadNow-0.1.0.xpi`。
 4. 安装后重启 Zotero（如果插件没有立即生效）。
 
-要求：Zotero **7.9.9 或更高版本**。本版本已在 **Zotero 10.0.8 / Windows** 上做过端到端验证（阅读器、划词翻译、问答、偏好设置、译文 PDF 导出）。
+要求：Zotero **7.9.9 或更高版本**。
 
 ## 配置
 

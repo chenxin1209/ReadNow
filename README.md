@@ -4,7 +4,7 @@
 
 项目主页：[chenxin1209/ReadNow](https://github.com/chenxin1209/ReadNow)
 
-> 插件受 [zhikangSu/DeepRead](https://github.com/zhikangSu/DeepRead) 的产品思路启发；ReadNow 是独立的 Zotero 实现，不是 DeepRead 桌面版的官方插件。
+> 插件受 [zhikangSu/DeepRead](https://github.com/zhikangSu/DeepRead) 的产品思路启发。
 
 ![ReadNow 界面示意](docs/reader-preview.png)
 

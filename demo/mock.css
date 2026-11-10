@@ -1,0 +1,205 @@
+:root {
+  --fill-secondary: #555;
+  --fill-quinary: rgba(0, 0, 0, 0.06);
+  --fill-quarternary: rgba(0, 0, 0, 0.12);
+  --material-toolbar: #f2f1ec;
+  --material-background: #fff;
+  --material-panedivider: 1px solid #d7d6cf;
+  --accent-blue: #2b6cb0;
+  --font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  --font-size: 13px;
+  --toolbar-placeholder-width: 0px;
+  --bottom-placeholder-height: 0px;
+  --width-focus-border: 2px;
+  --color-focus-search: rgba(43, 108, 176, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #deddd7;
+  font-family: var(--font-family);
+  font-size: 13px;
+}
+
+button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  cursor: default;
+}
+
+#reader-ui {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #deddd7;
+}
+
+.toolbar {
+  height: 41px;
+  min-height: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  background: #f2f1ec;
+  border-bottom: 1px solid #d7d6cf;
+  color: #444;
+}
+
+.toolbar .start,
+.toolbar .center,
+.toolbar .end {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.toolbar-button {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  color: #666;
+  font-size: 13px;
+}
+
+.toolbar-button:hover,
+.toolbar-button.active {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.toolbar .divider {
+  width: 1px;
+  height: 20px;
+  background: #d0cfc8;
+  margin: 0 3px;
+}
+
+.page-indicator {
+  color: #777;
+  font-size: 11px;
+  padding: 0 5px;
+}
+
+.custom-sections {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+#split-view {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 41px;
+  bottom: 0;
+  display: flex;
+}
+
+/* In the real Zotero reader #split-view is positioned against the viewport;
+   the mock keeps it inside #reader-ui, so don't double-shrink it. */
+html.deepread-mode-compare #reader-ui #split-view {
+  inset-inline-end: 0 !important;
+}
+
+.primary-view {
+  position: relative;
+  flex: 1 1 auto;
+  overflow: hidden;
+  background: #deddd7;
+}
+
+#viewerContainer {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+}
+
+.page {
+  position: absolute;
+  left: 50px;
+  top: 26px;
+  width: 610px;
+  height: 820px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+.page-header {
+  position: absolute;
+  left: 64px;
+  top: 56px;
+  font-family: Georgia, serif;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.page-authors {
+  position: absolute;
+  left: 64px;
+  top: 91px;
+  color: #555;
+  font-size: 11px;
+}
+
+.textLayer span {
+  position: absolute;
+  display: block;
+  height: 17px;
+  color: #202020;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 12.4px;
+  line-height: 17px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.textLayer span.selected {
+  background: rgba(255, 212, 0, 0.34);
+  box-shadow: 0 0 0 1px rgba(255, 190, 0, 0.25);
+}
+
+.page-number {
+  position: absolute;
+  bottom: 34px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #888;
+  font-family: Georgia, serif;
+  font-size: 11px;
+}
+
+#popup-slot {
+  position: fixed;
+  left: 250px;
+  top: 250px;
+  z-index: 2147483600;
+}
+
+#status-pill {
+  position: fixed;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  padding: 5px 12px;
+  border-radius: 99px;
+  background: rgba(40, 40, 36, 0.72);
+  color: #f5f3ed;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  z-index: 2147483601;
+  pointer-events: none;
+}

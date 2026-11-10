@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>ReadNow — reader mock</title>
+  <link rel="stylesheet" href="mock.css">
+</head>
+<body>
+  <div id="reader-ui">
+    <div class="toolbar">
+      <div class="start">
+        <button class="toolbar-button" title="侧边栏">☰</button>
+        <span class="divider"></span>
+        <button class="toolbar-button">−</button>
+        <button class="toolbar-button">＋</button>
+        <button class="toolbar-button">▣</button>
+      </div>
+      <div class="center">
+        <button class="toolbar-button active">▰</button>
+        <button class="toolbar-button">▱</button>
+        <button class="toolbar-button">✎</button>
+        <span class="divider"></span>
+        <span class="page-indicator">1 / 15</span>
+      </div>
+      <div class="end">
+        <span id="toolbar-slot" class="custom-sections"></span>
+        <button class="toolbar-button">A</button>
+        <button class="toolbar-button">⌕</button>
+      </div>
+    </div>
+    <div id="split-view">
+      <div class="primary-view">
+        <div id="viewerContainer">
+          <div class="page" data-page-number="1">
+            <div class="page-header">Attention Is All You Need</div>
+            <div class="page-authors">Ashish Vaswani, Noam Shazeer, Niki Parmar et al.</div>
+            <div class="textLayer">
+              <span style="left:64px;top:150px;width:470px;font-size:17px;font-weight:600">Abstract</span>
+              <span style="left:64px;top:185px;width:470px">The dominant sequence transduction models are based on complex recurrent or</span>
+              <span style="left:64px;top:202px;width:470px">convolutional neural networks that include an encoder and a decoder. The best</span>
+              <span style="left:64px;top:219px;width:470px">performing models also connect the encoder and decoder through an attention</span>
+              <span style="left:64px;top:236px;width:470px">mechanism. We propose a new simple network architecture, the Transformer,</span>
+              <span style="left:64px;top:253px;width:470px">based solely on attention mechanisms, dispensing with recurrence and convolutions</span>
+              <span style="left:64px;top:270px;width:470px">entirely. Experiments on two machine translation tasks show these models to be</span>
+              <span style="left:64px;top:287px;width:470px">superior in quality.</span>
+
+              <span style="left:64px;top:340px;width:470px;font-size:15px;font-weight:600">1 Introduction</span>
+              <span style="left:64px;top:370px;width:470px">Recurrent neural networks, long short-term memory and gated recurrent neural</span>
+              <span style="left:64px;top:387px;width:470px">networks in particular, have been firmly established as state of the art approaches</span>
+              <span style="left:64px;top:404px;width:470px">in sequence modeling and transduction problems such as language modeling and</span>
+              <span style="left:64px;top:421px;width:470px">machine translation. Numerous efforts have since continued to push the boundaries</span>
+              <span style="left:64px;top:438px;width:470px">of recurrent language models and encoder-decoder architectures.</span>
+
+              <span class="selected" style="left:64px;top:466px;width:470px">Recurrent models typically factor computation along the symbol positions of the</span>
+              <span class="selected" style="left:64px;top:483px;width:470px">input and output sequences. Aligning the positions to steps in computation time,</span>
+              <span class="selected" style="left:64px;top:500px;width:470px">they generate a sequence of hidden states h_t, as a function of the previous</span>
+              <span class="selected" style="left:64px;top:517px;width:470px">hidden state h_{t-1} and the input for position t.</span>
+
+              <span style="left:64px;top:565px;width:470px">This inherently sequential nature precludes parallelization within training examples,</span>
+              <span style="left:64px;top:582px;width:470px">which becomes critical at longer sequence lengths, as memory constraints limit</span>
+              <span style="left:64px;top:599px;width:470px">batching across examples.</span>
+
+              <span style="left:64px;top:660px;width:470px;font-size:15px;font-weight:600">2 Background</span>
+              <span style="left:64px;top:690px;width:470px">The goal of reducing sequential computation also forms the foundation of the</span>
+              <span style="left:64px;top:707px;width:470px">Extended Neural GPU, ByteNet and ConvS2S.</span>
+            </div>
+            <div class="page-number">1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="popup-slot"></div>
+  <div id="status-pill">Mock Zotero reader · ReadNow</div>
+  <script src="mock-prelude.js"></script>
+  <script src="../dist/content/scripts/deepread.js"></script>
+  <script src="mock.js"></script>
+</body>
+</html>

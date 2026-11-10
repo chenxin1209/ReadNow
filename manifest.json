@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "name": "ReadNow",
+  "version": "0.1.0",
+  "description": "在 Zotero 中对照精读论文：划词翻译、原文/译文分屏、锚定原文选区的 AI 问答卡片，支持你自己的 API Key。",
+  "homepage_url": "https://github.com/chenxin1209/ReadNow",
+  "author": "ReadNow for Zotero",
+  "icons": {
+    "32": "content/icons/deepread-32.png",
+    "48": "content/icons/deepread-48.png",
+    "96": "content/icons/deepread-96.png"
+  },
+  "applications": {
+    "zotero": {
+      "id": "deepread@zotero.local",
+      "update_url": "https://raw.githubusercontent.com/chenxin1209/ReadNow/main/zotero-update.json",
+      "strict_min_version": "7.9.9",
+      "strict_max_version": "10.9.9"
+    }
+  }
+}

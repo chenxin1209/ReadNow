@@ -8,7 +8,7 @@
 
 ![ReadNow 界面示意](docs/reader-preview.png)
 
-> 上图是本地 mock 渲染的界面示意，实际界面以 Zotero 内为准。
+> 实际界面以 Zotero 内为准。
 
 ## 功能
 
